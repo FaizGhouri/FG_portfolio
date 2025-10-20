@@ -34,7 +34,7 @@ const Contact = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const res = await fetch('https://fg-backend-five.vercel.app/send', {
+        const res = await fetch('https://fg-backend-black.vercel.app/send', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData),
