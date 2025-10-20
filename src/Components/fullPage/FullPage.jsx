@@ -18,9 +18,7 @@ const FullPage = () => (
         scrollBar={false}
         autoScrolling={true}
         navigat
-        parallax={true}
-        parallaxKey="reveal"
-        sectionsColor={["#202020", "#202020", "#202020", "#202020"]}
+        sectionsColor={["#111111", "#111111", "#111111", "#111111"]}
         onLeave={(origin, destination, direction) => {
             console.log("onLeave event", { origin, destination, direction });
         }}

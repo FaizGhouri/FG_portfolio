@@ -14,7 +14,7 @@ const navigation = [
 
 export default function WebHeader() {
     return (
-        <Disclosure as="nav" className="bg-transparent w-full fixed z-10 top-0">
+        <Disclosure as="nav" className="bg-transparent backdrop-blur-lg w-full fixed z-10 top-0">
             <div className="mx-auto max-w-7xl px-2 py-5 sm:px-6 lg:px-8">
                 <div className="relative flex h-16 items-center justify-between">
 
@@ -32,7 +32,7 @@ export default function WebHeader() {
                                     <a
                                         href={item.href}
                                         key={item.name}
-                                        className="text-white m-0 outfit-600 tracking-wider decoration-white text-sm hover:no-underline hover:text-white"
+                                        className="text-white m-0 outfit-600 tracking-wider decoration-current no-underline text-sm hover:underline active:text-white foucs:text-white"
                                     >
                                         {item.name}
                                     </a>

@@ -1,94 +1,111 @@
 import React from 'react';
 import '../../App.css';
 import hey from '../../Components/Assets/Background/hey.png';
-import predict from '../../Components/Assets/Background/3prediction.png'
-
+import predict from '../../Components/Assets/Background/3prediction.png';
+import { Reveal } from '../../utils/Reveal';
+import { FaRegEye, FaGithub } from "react-icons/fa";
 
 const posts = [
     {
         id: 1,
         title: 'HEY SOLUTIONS',
         src: hey,
-        href: 'https://heysolutions.org/'
-
+        href: 'https://heysolutions.org/',
+        description: `A call center website to know the client's what are we do and they would Contact us.`
     },
-
     {
         id: 2,
         title: '3PIDICTION',
         src: predict,
-        href: 'https://3prediction.com/'
-
+        href: 'https://3prediction.com/',
+        description: 'A gaming website to predict team and win a prize.'
     },
-
-
-
-]
+];
 
 const Project = () => {
-
-    const text = 'Home > Work >'
-
-
-
     return (
         <main>
+            <section className="bg-[#0a0a0a] text-white">
+                <div className="flex justify-center items-center">
+                    <div className="container px-4 sm:px-8 lg:px-16 py-16">
 
-            <section>
+                        {/* Heading */}
+                        <div className='px-6 sm:px-32 my-24'>
+                            <div className='about-text text-left'>
 
-                <div className='flex justify-center items-center'>
+                                {/* Top Line */}
+                                <hr className='w-16 sm:w-80  ' />
 
-                    <div className='container'>
+                                {/* Heading */}
+                                <Reveal>
+                                    <p className='text-white text-4xl sm:text-6xl outfit-900'>
+                                        Projects
+                                        <span className='text-[#10BD7B] outfit-900 text-3xl sm:text-5xl'>.</span>
+                                    </p>
+                                </Reveal>
 
-                        <div className='p-36 mt-24'>
+                                {/* Bottom Line */}
+                                <hr className='w-16 sm:w-80  ' />
 
-                            <p className='text-gray-400 text-md outfit-500'>{text}</p>
-                            <p className='text-white text-3xl outfit-500'>PORTFOILO</p>
-
-                        </div>
-
-
-                        <div className='py-16 sm:py-20'>
-                            <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                                <div className="mx-auto  lg:mx-0">
-                                    <p className='text-sm text-gray-400 outfit-400 p-2 tracking-widest'>PROJECTS</p>
-                                    <p className='text-5xl text-[#10BD7B] outfit-500 '>My Projects</p>
-                                </div>
-                                <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16  pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-                                    {posts.map((post) => (
-                                        <article key={post.id} className="group/edit relative flex max-w-sm rounded-xl cursor-pointer flex-col  items-center justify-center gap-5 shadow-[0_10px_50px_0_rgb(0,0,0)]">
-
-                                            <div className="w-full h-full relative group-hover/edit:bg-[#10BD7B] rounded-xl ease-in-out group-hover/edit:backdrop-opacity-20 duration-500 ">
-                                                <img src={post.src} alt="img" className='z-0 rounded-xl' />
-
-                                                <div className='invisible group-hover/edit:visible bg-[#10BD7B]   absolute top-0  w-full h-full z-50'>
-
-
-                                                    <p className=' text-white relative outfit-600 absolute top-[35%] opacity-100 text-xs tracking-wider'>{post.title}</p>
-
-                                                    <a href={post.href} target='_blank' className='text-[#10BD7B] text-md outfit-500 bg-[#202020] opacity-100 py-2 px-6 no-underline hover:no-underline hover:text-[#10BD7B] absolute top-[50%] left-[39%]'>VIEW</a>
-
-                                                </div>
-
-
-                                            </div>
-
-
-                                        </article>
-                                    ))}
-                                </div>
                             </div>
                         </div>
 
 
 
+                        {/* Projects */}
+                        {posts.map((post) => (
+                            <div
+                                key={post.id}
+                                className="mb-20 sm:mb-24 lg:mb-32 rounded-3xl bg-[#101010] shadow-xl overflow-hidden flex flex-col lg:flex-row items-center lg:items-start"
+                            >
+                                {/* Image */}
+                                <div className="w-full lg:w-1/2 relative h-64 sm:h-96 lg:h-full">
+                                    <img
+                                        src={post.src}
+                                        alt={post.title}
+                                        className="w-full h-full object-cover object-center"
+                                    />
+                                </div>
+
+                                {/* Content */}
+                                <div className="w-full lg:w-1/2 p-6 sm:p-10 text-center lg:text-left">
+                                    <Reveal>
+                                        <h2 className="text-2xl sm:text-3xl text-[#10BD7B]  outfit-800">{post.title}</h2>
+                                    </Reveal>
+
+                                    <Reveal>
+                                        <p className="mt-4 text-gray-300 text-base sm:text-lg">{post.description}</p>
+                                    </Reveal>
+
+                                    <div className="mt-6 flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4">
+                                        <Reveal>
+                                            <a
+                                                href={post.href}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center gap-2 bg-white text-[#202020] text-sm font-bold px-5 py-2 rounded-md hover:bg-gray-100 hover:text-[#10BD7B] transition"
+                                            >
+                                                Preview <FaRegEye />
+                                            </a>
+                                        </Reveal>
+                                        <Reveal>
+                                            <a
+                                                href="#"
+                                                className="inline-flex items-center gap-2 text-white hover:text-[#10BD7B] text-sm"
+                                            >
+                                                Github <FaGithub />
+                                            </a>
+                                        </Reveal>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
 
                     </div>
-
                 </div>
             </section>
         </main>
-    )
-}
+    );
+};
 
 export default Project;
