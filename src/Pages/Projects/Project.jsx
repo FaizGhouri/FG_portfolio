@@ -122,7 +122,7 @@ const Project = () => {
                                                     Launch <FaRegEye />
                                                 </a>
                                                 <a
-                                                    href="#"
+                                                    href="/"
                                                     className="card-btn card-btn-outline"
                                                     onClick={e => e.stopPropagation()}
                                                 >

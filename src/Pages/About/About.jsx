@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../App.css';
-import { Progress } from 'rsuite';
 import { Reveal } from '../../utils/Reveal';
 import HtmlIcon from '../../Components/Assets/Icons/html-5.png';
 import CssIcon from '../../Components/Assets/Icons/css-3.png';
