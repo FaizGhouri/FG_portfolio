@@ -1,100 +1,111 @@
-import React from 'react';
-import { SiFacebook, SiInstagram, SiLinkedin } from "react-icons/si";
-import '../../App.css';
-import { Reveal } from '../../utils/Reveal';
+import React, { useMemo } from 'react';
+import { SiLinkedin } from "react-icons/si";
 import { BsDownload } from "react-icons/bs";
+import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import Cv from '../../Components/Assets/Cv/FaizGhouriCV.pdf';
-import faiz from '../../Components/Assets/Background/FaizG.png';
+import { Reveal } from '../../utils/Reveal';
 
 const Home = () => {
+    // Memoize particles so Math.random() only runs once, not on every render
+    const particles = useMemo(() => (
+        [...Array(15)].map((_, i) => ({
+            id: i,
+            width: Math.random() * 2 + 1,
+            left: Math.random() * 100,
+            top: Math.random() * 100,
+            opacity: Math.random() * 0.6 + 0.2,
+            duration: 5 + Math.random() * 8,
+            delay: Math.random() * 5,
+        }))
+    ), []);
+
     return (
-        <div>
-            <main>
-                <section className="relative overflow-hidden pt-9 px-4 sm:px-6 min-h-screen bg-gradient-to-b from-[#0a0a0a] via-[#101010] to-[#1a1a1a]">
-                    <div className="flex items-center justify-center">
-                        <div className="container relative">
+        <section id="home" className="relative min-h-[100dvh] flex flex-col justify-center items-center overflow-hidden pt-24 lg:pt-32 pb-16">
+            {/* Background — GPU-friendly, no expensive blurs */}
+            <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+                {/* Lighter orbs – reduced blur radius */}
+                <div className="absolute w-[500px] h-[500px] bg-space-accent/15 rounded-full blur-[80px] animate-pulse-glow" style={{ willChange: 'opacity, transform' }} />
+                <div className="absolute w-[350px] h-[350px] bg-space-cyan/8 rounded-full blur-[70px] animate-pulse-glow" style={{ animationDelay: '1s', willChange: 'opacity, transform' }} />
 
-                            {/* Main Flex Row */}
-                            <div className="w-full flex flex-col sm:flex-row justify-between items-center gap-8 sm:gap-12 px-2 sm:px-12">
+                {/* Memoized static particles */}
+                {particles.map(p => (
+                    <div key={p.id} style={{
+                        position: 'absolute',
+                        width: p.width + 'px',
+                        height: p.width + 'px',
+                        borderRadius: '50%',
+                        background: '#fff',
+                        left: `${p.left}%`,
+                        top: `${p.top}%`,
+                        opacity: p.opacity,
+                        animation: `float ${p.duration}s ease-in-out infinite`,
+                        animationDelay: `${p.delay}s`,
+                        willChange: 'transform',
+                    }} />
+                ))}
 
-                                {/* Social + Text */}
-                                <div className="flex flex-col pt-28 sm:pt-0 sm:flex-row gap-6 sm:gap-24 max-w-full sm:max-w-[60%] z-10">
+                {/* Orbital rings with GPU hint */}
+                <div className="absolute w-[700px] h-[700px] border border-white/5 rounded-full animate-spin-slow" style={{ willChange: 'transform' }} />
+                <div className="absolute w-[1000px] h-[1000px] border border-space-cyan/5 rounded-full animate-spin-reverse" style={{ willChange: 'transform' }} />
+            </div>
 
-                                    {/* Social Icons */}
-                                    <div className="flex flex-row sm:flex-col justify-left sm:justify-center items-start gap-4 z-10">
-                                        <a href="https://www.instagram.com/faiz_ghour1/" target="_blank" rel="noopener noreferrer">
-                                            <SiInstagram className="text-white hover:text-[#10BD7B] text-lg sm:text-2xl" />
-                                        </a>
-                                        <a href="https://www.facebook.com/profile.php?id=100010459384790" target="_blank" rel="noopener noreferrer">
-                                            <SiFacebook className="text-white hover:text-[#10BD7B] text-lg sm:text-2xl" />
-                                        </a>
-                                        <a href="https://www.linkedin.com/in/faiz-ghouri-267052202/" target="_blank" rel="noopener noreferrer">
-                                            <SiLinkedin className="text-white hover:text-[#10BD7B] text-lg sm:text-2xl" />
-                                        </a>
-                                    </div>
+            <div className="container relative z-10 px-4 sm:px-6 mx-auto max-w-5xl text-center flex flex-col items-center">
+                
+                <Reveal>
+                    <div className="mb-8 inline-flex items-center gap-3 px-6 py-2 rounded-full border border-space-cyan/30 bg-space-cyan/5 shadow-[0_0_15px_rgba(0,240,255,0.1)]">
+                        <span className="w-2.5 h-2.5 rounded-full bg-space-cyan animate-pulse shadow-[0_0_8px_rgba(0,240,255,0.8)]"></span>
+                        <span className="text-space-cyan text-sm sm:text-base tracking-[0.2em] uppercase font-medium">Available for work</span>
+                    </div>
+                </Reveal>
 
-                                    {/* Text Content */}
-                                    <div className="text-left z-10">
-                                        <Reveal>
-                                            <p className="text-white text-4xl md:text-6xl lg:text-7xl xl:text-8xl outfit-700">Hey, I'm</p>
-                                        </Reveal>
-                                        <Reveal>
-                                            <p className="text-white text-4xl md:text-6xl lg:text-7xl xl:text-8xl outfit-700">
-                                                <span className="text-[#10BD7B]">Faiz</span> Ghouri.
-                                            </p>
-                                        </Reveal>
-                                        <Reveal>
-                                            <p className="text-white text-xl md:text-3xl outfit-200">
-                                                I'm a <span className="text-[#10BD7B] outfit-900">Front-end Developer</span>
-                                            </p>
-                                        </Reveal>
-                                        <Reveal>
-                                            <a
-                                                download="FaizGhouriCV.pdf"
-                                                href={Cv}
-                                                id="homeCv"
-                                                className="no-underline text-[#10BD7B] active:text-[#10BD7B] hover:text-[#111111] hover:bg-[#10BD7B] ease-in-out duration-300 text-sm md:text-md outfit-600 mt-8 sm:mt-12 flex gap-2 items-center px-3 py-2 border-4 border-[#10BD7B]"
-                                            >
-                                                GET RESUME <BsDownload />
-                                            </a>
-                                        </Reveal>
-                                    </div>
-                                </div>
+                <Reveal>
+                    <h1 className="text-5xl sm:text-7xl lg:text-[6.5rem] font-display font-bold leading-[1.1] tracking-tight mb-6 text-white">
+                        Hey, I'm <br className="md:hidden" />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-space-cyan to-space-purple inline-block relative">
+                            Faiz Ghouri.
+                            <span className="absolute inset-0 bg-gradient-to-r from-space-cyan to-space-purple blur-xl opacity-30"></span>
+                        </span>
+                    </h1>
+                </Reveal>
 
-                                {/* ✅ Image + Blob */}
-                                <div className="relative w-full sm:w-[40%] flex justify-center items-center z-10">
+                <Reveal>
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl mt-2 text-gray-300 font-light tracking-wide">
+                        I'm a <span className="font-semibold text-white">Front-end Developer</span>.
+                    </h2>
+                </Reveal>
 
-                                    {/* SVG Blob */}
-                                    <svg
-                                        className="absolute w-[300px] sm:w-[400px] h-auto -z-10 opacity-30"
-                                        viewBox="0 0 200 200"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            fill="#10BD7B"
-                                            d="M55.4,-49.7C71.8,-32.4,85.6,-10.6,81.6,8.5C77.7,27.6,55.9,44,35.4,55.5C14.9,67,-4.4,72.5,-23.6,66.3C-42.8,60.1,-61.8,42.2,-67.9,21.6C-74.1,1,-67.4,-22.3,-52.7,-40.1C-38.1,-58,-19.1,-70.3,1.3,-71.1C21.8,-71.9,43.5,-61.9,55.4,-49.7Z"
-                                            transform="translate(100 100)"
-                                        />
-                                    </svg>
+                <Reveal>
+                    <p className="mt-8 text-gray-400 max-w-2xl text-base md:text-xl leading-relaxed mx-auto font-light">
+                        Crafting immersive digital experiences through clean code and futuristic design. Welcome to my creative universe.
+                    </p>
+                </Reveal>
 
-                                    {/* Blur Glow */}
-                                    <div className="absolute w-60 h-60 sm:w-96 sm:h-96 rounded-full bg-gradient-to-tr from-[#10BD7B] to-[#0f766e] opacity-20 blur-3xl animate-pulse -z-10"></div>
+                <Reveal>
+                    <div className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-6">
+                        <a
+                            download="FaizGhouriCV.pdf"
+                            href={Cv}
+                            className="bg-space-cyan/10 hover:bg-space-cyan/20 border border-space-cyan/50 text-space-cyan hover:text-white hover:border-space-cyan transition-all duration-300 px-8 py-4 rounded-full font-medium tracking-widest text-sm sm:text-base flex items-center gap-3 shadow-[0_0_20px_rgba(0,240,255,0.15)] hover:shadow-[0_0_30px_rgba(0,240,255,0.4)] uppercase"
+                        >
+                            GET RESUME <BsDownload className="text-xl" />
+                        </a>
 
-                                    {/* Faiz Image */}
-                                    <img
-                                        src={faiz}
-                                        alt="Faiz Ghouri"
-                                        className="relative w-3/4 sm:w-full h-auto object-contain z-10"
-                                    />
-                                </div>
-
-                            </div>
-
+                        {/* Social / Contact Icons horizontally */}
+                        <div className="flex justify-center items-center gap-4">
+                            <a href="tel:+923170270842" className="w-14 h-14 flex items-center justify-center glass-card border border-white/10 rounded-full hover:bg-space-cyan/10 text-gray-400 hover:text-space-cyan hover:border-space-cyan/50 transition-all duration-300 shadow-lg group">
+                                <FaPhoneAlt className="text-xl group-hover:scale-110 transition-transform" />
+                            </a>
+                            <a href="mailto:faizghouri5@gmail.com" className="w-14 h-14 flex items-center justify-center glass-card border border-white/10 rounded-full hover:bg-space-cyan/10 text-gray-400 hover:text-space-cyan hover:border-space-cyan/50 transition-all duration-300 shadow-lg group">
+                                <FaEnvelope className="text-xl group-hover:scale-110 transition-transform" />
+                            </a>
+                            <a href="https://www.linkedin.com/in/faiz-ghouri-267052202/" target="_blank" rel="noopener noreferrer" className="w-14 h-14 flex items-center justify-center glass-card border border-white/10 rounded-full hover:bg-space-cyan/10 text-gray-400 hover:text-space-cyan hover:border-space-cyan/50 transition-all duration-300 shadow-lg group">
+                                <SiLinkedin className="text-xl group-hover:scale-110 transition-transform" />
+                            </a>
                         </div>
                     </div>
-                </section>
-            </main>
-        </div>
+                </Reveal>
+            </div>
+        </section>
     );
 };
 

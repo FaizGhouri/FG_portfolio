@@ -1,110 +1,150 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../App.css';
+import './Project.css';
 import hey from '../../Components/Assets/Background/hey.png';
 import predict from '../../Components/Assets/Background/3prediction.png';
 import { Reveal } from '../../utils/Reveal';
-import { FaRegEye, FaGithub } from "react-icons/fa";
+import { FaRegEye, FaGithub, FaExternalLinkAlt, FaTimes } from "react-icons/fa";
 
-const posts = [
+const projects = [
     {
         id: 1,
         title: 'HEY SOLUTIONS',
         src: hey,
         href: 'https://heysolutions.org/',
-        description: `A call center website to know the client's what are we do and they would Contact us.`
+        description: `A modern call center agency website detailing services provided and facilitating contact. Built with a focus on clean layout and fast loading.`,
+        tags: ['React', 'CSS', 'Framer Motion'],
+        color: '#00f0ff',
+        number: '01',
     },
     {
         id: 2,
         title: '3PIDICTION',
         src: predict,
         href: 'https://3prediction.com/',
-        description: 'A gaming website to predict team and win a prize.'
+        description: 'An interactive gaming platform to predict sports outcomes and win prizes. Features real-time state management and dynamic UI rendering.',
+        tags: ['React', 'API Integration', 'Tailwind'],
+        color: '#a78bfa',
+        number: '02',
     },
 ];
 
 const Project = () => {
+    const [flipped, setFlipped] = useState(null);
+
     return (
-        <main>
-            <section className="bg-[#0a0a0a] text-white">
-                <div className="flex justify-center items-center">
-                    <div className="container px-4 sm:px-8 lg:px-16 py-16">
+        <section id="projects" className="relative min-h-screen py-24 overflow-hidden">
 
-                        {/* Heading */}
-                        <div className='px-6 sm:px-32 my-24'>
-                            <div className='about-text text-left'>
+            {/* Top line */}
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-space-cyan to-transparent opacity-30" />
 
-                                {/* Top Line */}
-                                <hr className='w-16 sm:w-80  ' />
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
 
-                                {/* Heading */}
-                                <Reveal>
-                                    <p className='text-white text-4xl sm:text-6xl outfit-900'>
-                                        Projects
-                                        <span className='text-[#10BD7B] outfit-900 text-3xl sm:text-5xl'>.</span>
-                                    </p>
-                                </Reveal>
+                {/* Header */}
+                <div className="mb-20 text-center flex flex-col items-center">
+                    <Reveal>
+                        <h2 className="section-heading text-white">
+                            Selected <span className="glow-purple">Missions</span>
+                        </h2>
+                    </Reveal>
+                    <Reveal>
+                        <p className="mt-4 max-w-2xl text-gray-400">
+                            A showcase of my recent expeditions into the digital frontier.
+                        </p>
+                    </Reveal>
+                    <div className="w-16 h-1 mt-6 bg-gradient-to-r from-space-purple to-space-cyan rounded-full" />
+                </div>
 
-                                {/* Bottom Line */}
-                                <hr className='w-16 sm:w-80  ' />
-
-                            </div>
-                        </div>
-
-
-
-                        {/* Projects */}
-                        {posts.map((post) => (
+                {/* Solitaire Card Deck */}
+                <Reveal width="100%">
+                    <div className="solitaire-deck">
+                        {projects.map((project, index) => (
                             <div
-                                key={post.id}
-                                className="mb-20 sm:mb-24 lg:mb-32 rounded-3xl bg-[#101010] shadow-xl overflow-hidden flex flex-col lg:flex-row items-center lg:items-start"
+                                key={project.id}
+                                className={`solitaire-card ${flipped === project.id ? 'flipped' : ''}`}
+                                style={{ '--card-color': project.color, '--card-index': index }}
+                                onClick={() => setFlipped(flipped === project.id ? null : project.id)}
                             >
-                                {/* Image */}
-                                <div className="w-full lg:w-1/2 relative h-64 sm:h-96 lg:h-full">
-                                    <img
-                                        src={post.src}
-                                        alt={post.title}
-                                        className="w-full h-full object-cover object-center"
-                                    />
+                                {/* ── Front (face-down / cover) ── */}
+                                <div className="card-face card-back">
+                                    {/* Card back pattern */}
+                                    <div className="card-back-pattern" />
+                                    <div className="card-back-center">
+                                        <div className="card-back-logo">FG</div>
+                                        <div className="card-back-num">PROJECT {project.number}</div>
+                                    </div>
+                                    <div className="card-corner card-corner-tl">{project.number}</div>
+                                    <div className="card-corner card-corner-br">{project.number}</div>
+                                    <div className="card-tap-hint">Tap to reveal →</div>
                                 </div>
 
-                                {/* Content */}
-                                <div className="w-full lg:w-1/2 p-6 sm:p-10 text-center lg:text-left">
-                                    <Reveal>
-                                        <h2 className="text-2xl sm:text-3xl text-[#10BD7B]  outfit-800">{post.title}</h2>
-                                    </Reveal>
+                                {/* ── Back (face-up / content) ── */}
+                                <div className="card-face card-front">
+                                    <div className="card-front-inner">
+                                        {/* Image */}
+                                        <div className="card-image-wrap">
+                                            {/* Browser dots */}
+                                            <div className="card-browser-bar">
+                                                <span className="dot dot-red" />
+                                                <span className="dot dot-yellow" />
+                                                <span className="dot dot-green" />
+                                                <span className="browser-url">
+                                                    <FaExternalLinkAlt className="text-[9px]" />
+                                                    {project.title.toLowerCase()}.com
+                                                </span>
+                                            </div>
+                                            <div className="card-img-container">
+                                                <img src={project.src} alt={project.title} className="card-img" />
+                                                <div className="card-img-overlay" />
+                                            </div>
+                                        </div>
 
-                                    <Reveal>
-                                        <p className="mt-4 text-gray-300 text-base sm:text-lg">{post.description}</p>
-                                    </Reveal>
+                                        {/* Content */}
+                                        <div className="card-content">
+                                            <div className="card-project-num">PROJECT {project.number}</div>
+                                            <h3 className="card-title">{project.title}</h3>
+                                            <p className="card-desc">{project.description}</p>
 
-                                    <div className="mt-6 flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4">
-                                        <Reveal>
-                                            <a
-                                                href={post.href}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="inline-flex items-center gap-2 bg-white text-[#202020] text-sm font-bold px-5 py-2 rounded-md hover:bg-gray-100 hover:text-[#10BD7B] transition"
-                                            >
-                                                Preview <FaRegEye />
-                                            </a>
-                                        </Reveal>
-                                        <Reveal>
-                                            <a
-                                                href="#"
-                                                className="inline-flex items-center gap-2 text-white hover:text-[#10BD7B] text-sm"
-                                            >
-                                                Github <FaGithub />
-                                            </a>
-                                        </Reveal>
+                                            <div className="card-tags">
+                                                {project.tags.map(tag => (
+                                                    <span key={tag} className="card-tag">{tag}</span>
+                                                ))}
+                                            </div>
+
+                                            <div className="card-actions">
+                                                <a
+                                                    href={project.href}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="card-btn card-btn-primary"
+                                                    onClick={e => e.stopPropagation()}
+                                                >
+                                                    Launch <FaRegEye />
+                                                </a>
+                                                <a
+                                                    href="#"
+                                                    className="card-btn card-btn-outline"
+                                                    onClick={e => e.stopPropagation()}
+                                                >
+                                                    <FaGithub />
+                                                </a>
+                                                <button
+                                                    className="card-btn card-btn-close"
+                                                    onClick={e => { e.stopPropagation(); setFlipped(null); }}
+                                                >
+                                                    <FaTimes />
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         ))}
-
                     </div>
-                </div>
-            </section>
-        </main>
+                </Reveal>
+
+            </div>
+        </section>
     );
 };
 

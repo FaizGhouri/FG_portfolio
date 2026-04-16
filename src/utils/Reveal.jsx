@@ -15,7 +15,7 @@ export const Reveal = ({ children, width = "fit-content" }) => {
             mainContorls.start("visible");
             slideContorls.start("visible");
         }
-    }, [isInView])
+    }, [isInView, mainContorls, slideContorls])
 
     return (
 
@@ -48,7 +48,7 @@ export const Reveal = ({ children, width = "fit-content" }) => {
                     bottom: 4,
                     left: 0,
                     right: 0,
-                    backgroundColor: '#10BD7B',
+                    background: 'linear-gradient(90deg, #00f0ff, #6366f1)',
                     zIndex: 20,
 
                 }}
@@ -57,4 +57,3 @@ export const Reveal = ({ children, width = "fit-content" }) => {
         </div>
     )
 }
-
