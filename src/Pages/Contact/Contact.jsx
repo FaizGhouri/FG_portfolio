@@ -56,17 +56,17 @@ const Contact = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-5 p-1 lg:p-0">
                         
                         {/* Left Info Panel */}
-                        <div className="col-span-1 lg:col-span-2 bg-gradient-to-br from-space-800 to-space-900 p-8 sm:p-12 relative overflow-hidden rounded-3xl lg:rounded-none lg:rounded-l-3xl">
+                        <div className="col-span-1 lg:col-span-2 bg-gradient-to-br from-space-800 to-space-900 p-8 sm:p-12 relative overflow-hidden rounded-3xl lg:rounded-none lg:rounded-l-3xl border-r border-white/5">
                              <div className="absolute -left-20 -bottom-20 w-64 h-64 bg-space-cyan/10 rounded-full blur-[60px]" />
                             
                              <Reveal>
-                                <h2 className="text-3xl sm:text-4xl font-display font-bold text-white mb-2 relative z-10">
+                                <h2 className="text-4xl sm:text-5xl font-display font-black text-white mb-4 relative z-10 leading-[1.1] tracking-tight">
                                     Initiate <br/><span className="glow-text">Connection.</span>
                                 </h2>
                              </Reveal>
                              <Reveal>
-                                <p className="text-gray-400 mt-6 relative z-10 font-light leading-relaxed">
-                                    Looking for a developer to bring your vision into the digital realm? My communication channels are open.
+                                <p className="text-gray-400 mt-8 relative z-10 font-light text-lg leading-relaxed">
+                                    Ready to architect your next digital system? My communication channels are optimized for rapid response.
                                 </p>
                              </Reveal>
 

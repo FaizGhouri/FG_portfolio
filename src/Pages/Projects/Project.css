@@ -7,12 +7,14 @@
     min-height: 540px;
     position: relative;
     perspective: 1200px;
+    padding: 60px 0; /* Add vertical padding for hover lift */
+    overflow: visible; /* Ensure scale/translate doesn't clip */
 }
 
 /* ─── Individual Card Shell ──────────────────────────────── */
 .solitaire-card {
-    width: 360px;
-    height: 520px;
+    width: 320px;
+    height: 500px;
     position: relative;
     transform-style: preserve-3d;
     cursor: pointer;
@@ -22,19 +24,27 @@
     flex-shrink: 0;
     border-radius: 20px;
     /* Stack them like a solitaire pile — slight offsets per card */
-    margin-left: -80px;
+    margin-left: -180px;
     z-index: calc(var(--card-index) + 1);
     transform: rotate(calc(var(--card-index) * -4deg)) translateY(calc(var(--card-index) * -6px));
 }
 
+.solitaire-card:first-child {
+    margin-left: 0;
+}
+
 /* Fan-out on hover (spread horizontally) */
 .solitaire-deck:hover .solitaire-card {
-    margin-left: 32px;
+    margin-left: 12px;
     transform: rotate(0deg) translateY(0px);
 }
 
-/* Lift the hovered card */
-.solitaire-deck .solitaire-card:hover {
+.solitaire-deck:hover .solitaire-card:first-child {
+    margin-left: 0;
+}
+
+/* Lift the hovered card (only if not flipped) */
+.solitaire-deck .solitaire-card:not(.flipped):hover {
     transform: rotate(0deg) translateY(-28px) scale(1.04) !important;
     z-index: 99 !important;
 }
@@ -43,7 +53,7 @@
 .solitaire-card.flipped {
     transform: rotateY(180deg) !important;
     z-index: 100 !important;
-    margin-left: 32px;
+    margin-left: 12px;
 }
 
 /* ─── Card Faces ─────────────────────────────────────────── */
@@ -55,6 +65,16 @@
     -webkit-backface-visibility: hidden;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    pointer-events: auto; /* Default to auto */
+}
+
+.flipped .card-back {
+    pointer-events: none; /* Disable back face clicks when flipped */
+}
+
+.flipped .card-front {
+    pointer-events: auto;
+    z-index: 10;
 }
 
 /* ─── Card Back (face-down cover) ───────────────────────── */
@@ -365,7 +385,8 @@
         min-height: 550px;
         position: relative;
         perspective: 1200px;
-        padding-top: 40px;
+        padding-top: 80px;
+        padding-bottom: 40px;
         touch-action: manipulation;
     }
 

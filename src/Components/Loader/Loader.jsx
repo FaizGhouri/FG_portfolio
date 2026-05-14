@@ -40,8 +40,8 @@ const Loader = ({ onFinish }) => {
                     <span>FG</span>
                 </div>
 
-                <div className="loader-name">FAIZ GHOURI</div>
-                <div className="loader-role">Front-end Developer</div>
+                <div className="loader-name font-display">FAIZ GHOURI</div>
+                <div className="loader-role">System Architect</div>
 
                 {/* Progress bar */}
                 <div className="loader-bar-track">

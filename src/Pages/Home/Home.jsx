@@ -50,57 +50,64 @@ const Home = () => {
             </div>
 
             <div className="container relative z-10 px-4 sm:px-6 mx-auto max-w-5xl text-center flex flex-col items-center">
-                
+
                 <Reveal>
-                    <div className="mb-8 inline-flex items-center gap-3 px-6 py-2 rounded-full border border-space-cyan/30 bg-space-cyan/5 shadow-[0_0_15px_rgba(0,240,255,0.1)]">
-                        <span className="w-2.5 h-2.5 rounded-full bg-space-cyan animate-pulse shadow-[0_0_8px_rgba(0,240,255,0.8)]"></span>
-                        <span className="text-space-cyan text-sm sm:text-base tracking-[0.2em] uppercase font-medium">Available for work</span>
+                    <div className="mb-10 inline-flex items-center gap-3 px-6 py-2 rounded-full border border-space-cyan/20 bg-space-cyan/5 backdrop-blur-sm shadow-[0_0_20px_rgba(0,240,255,0.05)]">
+                        <span className="w-2.5 h-2.5 rounded-full bg-space-cyan animate-pulse shadow-[0_0_10px_rgba(0,240,255,1)]"></span>
+                        <span className="text-space-cyan text-xs sm:text-sm tracking-[0.3em] uppercase font-bold">System Status: Operational</span>
                     </div>
                 </Reveal>
 
                 <Reveal>
-                    <h1 className="text-5xl sm:text-7xl lg:text-[6.5rem] font-display font-bold leading-[1.1] tracking-tight mb-6 text-white">
+                    <h1 className="text-5xl sm:text-7xl lg:text-[7.5rem] font-display font-extrabold leading-none tracking-tight mb-8 text-white">
                         Hey, I'm <br className="md:hidden" />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-space-cyan to-space-purple inline-block relative">
-                            Faiz Ghouri.
-                            <span className="absolute inset-0 bg-gradient-to-r from-space-cyan to-space-purple blur-xl opacity-30"></span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-space-cyan via-white to-space-purple inline-block relative py-2">
+                            Faiz Ghouri
+                            <span className="absolute -bottom-2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-space-cyan/50 to-transparent"></span>
                         </span>
                     </h1>
                 </Reveal>
 
                 <Reveal>
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl mt-2 text-gray-300 font-light tracking-wide">
-                        I'm a <span className="font-semibold text-white">Front-end Developer</span>.
+                    <h2 className="text-xl md:text-3xl lg:text-4xl mt-4 text-gray-300 font-light tracking-widest uppercase">
+                        Front-end <span className="font-bold text-white glow-text">Architect</span>
                     </h2>
                 </Reveal>
 
                 <Reveal>
-                    <p className="mt-8 text-gray-400 max-w-2xl text-base md:text-xl leading-relaxed mx-auto font-light">
-                        Crafting immersive digital experiences through clean code and futuristic design. Welcome to my creative universe.
+                    <p className="mt-10 text-gray-400 max-w-2xl text-base md:text-lg leading-relaxed mx-auto font-light">
+                        Engineering high-performance, visually stunning digital environments. Specialized in React ecosystems and cutting-edge UI/UX implementations.
                     </p>
                 </Reveal>
 
                 <Reveal>
-                    <div className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-6">
+                    <div className="mt-16 flex flex-col sm:flex-row justify-center items-center gap-8">
                         <a
                             download="FaizGhouriCV.pdf"
                             href={Cv}
-                            className="bg-space-cyan/10 hover:bg-space-cyan/20 border border-space-cyan/50 text-space-cyan hover:text-white hover:border-space-cyan transition-all duration-300 px-8 py-4 rounded-full font-medium tracking-widest text-sm sm:text-base flex items-center gap-3 shadow-[0_0_20px_rgba(0,240,255,0.15)] hover:shadow-[0_0_30px_rgba(0,240,255,0.4)] uppercase"
+                            className="group relative px-10 py-5 bg-transparent border border-space-cyan/50 text-space-cyan font-bold tracking-[0.2em] uppercase overflow-hidden transition-all duration-500 rounded-lg hover:text-white"
                         >
-                            GET RESUME <BsDownload className="text-xl" />
+                            <span className="absolute inset-0 w-0 bg-space-cyan transition-all duration-500 ease-out group-hover:w-full"></span>
+                            <span className="relative flex items-center gap-3">
+                                Get Resume <BsDownload className="text-xl" />
+                            </span>
                         </a>
 
-                        {/* Social / Contact Icons horizontally */}
-                        <div className="flex justify-center items-center gap-4">
-                            <a href="tel:+923170270842" className="w-14 h-14 flex items-center justify-center glass-card border border-white/10 rounded-full hover:bg-space-cyan/10 text-gray-400 hover:text-space-cyan hover:border-space-cyan/50 transition-all duration-300 shadow-lg group">
-                                <FaPhoneAlt className="text-xl group-hover:scale-110 transition-transform" />
-                            </a>
-                            <a href="mailto:faizghouri5@gmail.com" className="w-14 h-14 flex items-center justify-center glass-card border border-white/10 rounded-full hover:bg-space-cyan/10 text-gray-400 hover:text-space-cyan hover:border-space-cyan/50 transition-all duration-300 shadow-lg group">
-                                <FaEnvelope className="text-xl group-hover:scale-110 transition-transform" />
-                            </a>
-                            <a href="https://www.linkedin.com/in/faiz-ghouri-267052202/" target="_blank" rel="noopener noreferrer" className="w-14 h-14 flex items-center justify-center glass-card border border-white/10 rounded-full hover:bg-space-cyan/10 text-gray-400 hover:text-space-cyan hover:border-space-cyan/50 transition-all duration-300 shadow-lg group">
-                                <SiLinkedin className="text-xl group-hover:scale-110 transition-transform" />
-                            </a>
+                        <div className="flex items-center gap-6">
+                            {[
+                                { icon: FaPhoneAlt, href: "tel:+923170270842", label: "Call" },
+                                { icon: FaEnvelope, href: "mailto:faizghouri5@gmail.com", label: "Email" },
+                                { icon: SiLinkedin, href: "https://www.linkedin.com/in/faiz-ghouri-267052202/", label: "LinkedIn" }
+                            ].map((social, i) => (
+                                <a 
+                                    key={social.label + i}
+                                    href={social.href} 
+                                    aria-label={social.label}
+                                    className="p-4 glass-card border border-white/10 rounded-xl hover:bg-space-cyan/10 text-gray-400 hover:text-space-cyan hover:border-space-cyan/50 transition-all duration-300 shadow-xl group"
+                                >
+                                    <social.icon className="text-2xl group-hover:scale-110 transition-transform" />
+                                </a>
+                            ))}
                         </div>
                     </div>
                 </Reveal>

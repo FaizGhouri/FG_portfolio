@@ -13,14 +13,29 @@ body {
   font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Global Link Reset */
+a, a:hover, a:focus, a:active {
+  text-decoration: none !important;
+  outline: none !important;
 }
 
 ::selection { color: #02040f; background-color: #00f0ff; }
 
 /* ─── Scrollbar ─────────────────────────────── */
-::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #02040f; }
-::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 3px; }
+::-webkit-scrollbar-thumb { 
+  background: linear-gradient(to bottom, #6366f1, #00f0ff); 
+  border-radius: 10px;
+  border: 2px solid #02040f;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #8b5cf6, #00f0ff);
+}
 
 /* ─── Animated gradient background ─────────── */
 .space-bg {
@@ -34,19 +49,30 @@ body {
 
 /* ─── Glassmorphism card ────────────────────── */
 .glass-card {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-  will-change: transform;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
   transform: translateZ(0);
 }
 .glass-card:hover {
   border-color: rgba(0, 240, 255, 0.3);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 10px 25px rgba(0, 240, 255, 0.1);
-  transform: translateY(-4px) translateZ(0);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 240, 255, 0.1);
+  transform: translateY(-8px) translateZ(0);
+}
+
+.glass-card-purple:hover {
+  border-color: rgba(167, 139, 250, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(167, 139, 250, 0.1);
+}
+
+.glass-card-alt {
+  background: rgba(2, 4, 15, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 /* ─── Neon glow text ────────────────────────── */
@@ -150,11 +176,57 @@ body {
 }
 
 .animate-float { animation: float 7s ease-in-out infinite; will-change: transform; }
+.animate-float-slow { animation: float 12s ease-in-out infinite; will-change: transform; }
 .animate-float-reverse { animation: floatReverse 9s ease-in-out infinite; will-change: transform; }
-.animate-spin-slow { animation: spin-slow 20s linear infinite; will-change: transform; }
-.animate-spin-reverse { animation: spin-reverse 15s linear infinite; will-change: transform; }
+.animate-spin-slow { animation: spin-slow 25s linear infinite; will-change: transform; }
+.animate-spin-reverse { animation: spin-reverse 18s linear infinite; will-change: transform; }
 .animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; will-change: opacity, transform; }
 .animate-scan { animation: scan-line 4s linear infinite; will-change: transform; }
+
+/* ─── Modern Skill Visualization ─────────────── */
+.skill-bar-container {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.skill-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #6366f1, #00f0ff);
+  border-radius: 2px;
+  position: relative;
+}
+
+.skill-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: skill-shimmer 2s infinite;
+}
+
+@keyframes skill-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.stat-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: conic-gradient(from 0deg at 50% 50%, transparent 0%, rgba(0, 240, 255, 0.1) 25%, transparent 50%);
+  animation: spin-slow 10s linear infinite;
+  pointer-events: none;
+}
 
 /* ─── Particles ─────────────────────────────── */
 .particle {
@@ -189,13 +261,53 @@ body {
 
 /* ─── Skill card hover glow ──────────────────── */
 .skill-card {
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
+  height: 190px !important; /* Uniform Height */
+  width: 100% !important;
+  max-width: 160px !important; /* Uniform Width */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem !important;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
 }
+
 .skill-card:hover {
-  transform: translateY(-8px) scale(1.04);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 10px 25px rgba(0, 240, 255, 0.2);
-  border: 1px solid #00f0ff !important;
+  transform: translateY(-10px) scale(1.02);
+  background: rgba(0, 240, 255, 0.04);
+  border-color: rgba(0, 240, 255, 0.4) !important;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4), 
+    0 0 20px rgba(0, 240, 255, 0.1),
+    inset 0 0 15px rgba(0, 240, 255, 0.05);
+}
+
+.skill-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.skill-card:hover::before {
+  left: 100%;
 }
 
 /* ─── Header blur ───────────────────────────── */
@@ -253,18 +365,44 @@ body {
 /* ─── Input fields ───────────────────────────── */
 .space-input {
   width: 100%;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 10px;
-  padding: 14px 18px;
+  background: rgba(2, 4, 15, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 16px 20px;
   color: #fff;
   font-family: 'Poppins', sans-serif;
   font-size: 15px;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: all 0.3s ease;
   outline: none;
+  backdrop-filter: blur(10px);
 }
-.space-input::placeholder { color: rgba(255,255,255,0.3); }
+.space-input::placeholder { color: rgba(255,255,255,0.25); }
 .space-input:focus {
-  border-color: rgba(99, 102, 241, 0.6);
-  box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
+  border-color: #00f0ff;
+  background: rgba(0, 240, 255, 0.03);
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.1), inset 0 0 0 1px rgba(0, 240, 255, 0.2);
 }
+
+/* ─── Buttons ───────────────────────────────── */
+.btn-neon {
+  background: linear-gradient(135deg, #6366f1, #00f0ff);
+  color: #02040f;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 16px 40px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+.btn-neon:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 240, 255, 0.4);
+  color: #fff;
+}
+.btn-neon:active { transform: translateY(-1px); }

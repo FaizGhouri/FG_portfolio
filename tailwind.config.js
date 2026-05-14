@@ -17,7 +17,8 @@ module.exports = {
       },
       fontFamily: {
         sans: ['"Poppins"', 'sans-serif'],
-        display: ['"Poppins"', 'sans-serif'],
+        display: ['"Outfit"', 'sans-serif'],
+        mono: ['"Fira Code"', 'monospace'],
       },
       animation: {
         'float': 'float 7s ease-in-out infinite',
