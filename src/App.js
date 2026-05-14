@@ -6,6 +6,7 @@ import About from "./Pages/About/About";
 import Project from "./Pages/Projects/Project";
 import Contact from "./Pages/Contact/Contact";
 import Loader from './Components/Loader/Loader';
+import { Analytics } from "@vercel/analytics/react"
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -13,6 +14,7 @@ function App() {
   return (
     <>
       {loading && <Loader onFinish={() => setLoading(false)} />}
+      <Analytics />
 
       {!loading && (
         <div className="App space-bg">
